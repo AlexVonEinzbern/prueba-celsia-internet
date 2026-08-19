@@ -88,7 +88,7 @@ POST /api/clientes/123456789/servicios
 Requisitos:
 
 - [Docker](https://docs.docker.com/engine/install/) y [Docker Compose](https://docs.docker.com/compose/install/)
-- Opcional para desarrollo local: [uv](https://docs.astral.sh/uv/) y Python ≥ 3.11
+- Opcional para desarrollo local: [uv](https://docs.astral.sh/uv/) y Python ≥ 3.13
 
 Variables de entorno:
 
