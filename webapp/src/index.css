@@ -496,6 +496,7 @@ h3 {
   border: 1px solid var(--borde);
   border-radius: var(--radio-lg);
   box-shadow: var(--sombra-sm);
+  margin-top: var(--esp-4);
 }
 
 .tabla {
