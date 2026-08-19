@@ -36,12 +36,12 @@ export function ClienteDetalle({ cliente }: ClienteDetalleProps) {
       <dl className="rejilla-detalle">
         <dt>Identificación</dt>
         <dd>{cliente.identificacion}</dd>
+        <dt>Tipo de identificación</dt>
+        <dd>{tipoIdentificacion}</dd>
         <dt>Nombres</dt>
         <dd>{cliente.nombres}</dd>
         <dt>Apellidos</dt>
         <dd>{cliente.apellidos}</dd>
-        <dt>Tipo de identificación</dt>
-        <dd>{tipoIdentificacion}</dd>
         <dt>Fecha de nacimiento</dt>
         <dd>{formatearFecha(cliente.fechaNacimiento)}</dd>
         <dt>Celular</dt>

@@ -157,6 +157,12 @@ h3 {
   border-radius: var(--radio-lg);
   box-shadow: var(--sombra-sm);
   padding: var(--esp-6);
+  margin-top: var(--esp-4);
+}
+
+.tarjeta h3 {
+  margin-top: var(--esp-6);
+  margin-bottom: var(--esp-4);
 }
 
 .fila-acciones {
@@ -169,9 +175,10 @@ h3 {
 
 .rejilla-detalle {
   display: grid;
-  grid-template-columns: minmax(150px, max-content) 1fr;
-  gap: var(--esp-2) var(--esp-6);
-  align-items: baseline;
+  grid-template-columns: max-content 1fr max-content 1fr;
+  column-gap: var(--esp-4);
+  row-gap: var(--esp-3);
+  align-items: baseline;                                                                                                                                    
 }
 
 .rejilla-detalle > dt {
@@ -181,6 +188,7 @@ h3 {
 
 .rejilla-detalle > dd {
   margin: 0;
+  color: var(--texto);
 }
 
 .barra-consulta {
@@ -660,14 +668,5 @@ h3 {
 
   .pagina__titulo {
     font-size: 1.25rem;
-  }
-
-  .rejilla-detalle {
-    grid-template-columns: 1fr;
-    gap: var(--esp-1) var(--esp-4);
-  }
-
-  .rejilla-detalle > dd {
-    margin-bottom: var(--esp-2);
   }
 }
