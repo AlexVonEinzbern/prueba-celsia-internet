@@ -431,12 +431,13 @@ h3 {
 
 /* ---------- Modal (dialog nativo) ---------- */
 .modal {
+  margin: auto;
   border: none;
   padding: 0;
   border-radius: var(--radio-lg);
   box-shadow: var(--sombra-xl);
   width: min(560px, calc(100vw - 2 * var(--esp-4)));
-  max-height: calc(100dvh - 4rem);
+  max-height: calc(110dvh - 4rem);
   background: var(--superficie);
   color: var(--texto);
 }
