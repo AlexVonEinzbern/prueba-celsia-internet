@@ -17,16 +17,16 @@ Los cuerpos de las solicitudes y respuestas utilizan **camelCase** para los camp
 |---|---|---|
 | `GET` | `/` | Mensaje de bienvenida de la API |
 | `GET` | `/health` | Verificación de salud de la API |
-| `GET` | `/api/clientes` | Lista todos los clientes |
-| `POST` | `/api/clientes` | Crea un cliente |
-| `GET` | `/api/clientes/{identificacion}` | Obtiene un cliente por identificación |
-| `PUT` | `/api/clientes/{identificacion}` | Actualiza un cliente |
-| `DELETE` | `/api/clientes/{identificacion}` | Elimina un cliente y sus servicios asociados |
-| `GET` | `/api/clientes/{identificacion}/servicios` | Lista los servicios de un cliente |
-| `POST` | `/api/clientes/{identificacion}/servicios` | Asocia un servicio a un cliente |
-| `GET` | `/api/clientes/{identificacion}/servicios/{servicio}` | Obtiene un servicio específico |
-| `PUT` | `/api/clientes/{identificacion}/servicios/{servicio}` | Actualiza un servicio |
-| `DELETE` | `/api/clientes/{identificacion}/servicios/{servicio}` | Elimina un servicio |
+| `GET` | `/api/v1/clientes` | Lista todos los clientes |
+| `POST` | `/api/v1/clientes` | Crea un cliente |
+| `GET` | `/api/v1/clientes/{identificacion}` | Obtiene un cliente por identificación |
+| `PUT` | `/api/v1/clientes/{identificacion}` | Actualiza un cliente |
+| `DELETE` | `/api/v1/clientes/{identificacion}` | Elimina un cliente y sus servicios asociados |
+| `GET` | `/api/v1/clientes/{identificacion}/servicios` | Lista los servicios de un cliente |
+| `POST` | `/api/v1/clientes/{identificacion}/servicios` | Asocia un servicio a un cliente |
+| `GET` | `/api/v1/clientes/{identificacion}/servicios/{servicio}` | Obtiene un servicio específico |
+| `PUT` | `/api/v1/clientes/{identificacion}/servicios/{servicio}` | Actualiza un servicio |
+| `DELETE` | `/api/v1/clientes/{identificacion}/servicios/{servicio}` | Elimina un servicio |
 
 ### Modelo de datos
 
@@ -59,7 +59,7 @@ Las tablas se crean automáticamente al iniciar la aplicación.
 Crear un cliente:
 
 ```json
-POST /api/clientes
+POST /api/v1/clientes
 {
   "identificacion": "123456789",
   "nombres": "Juan",
@@ -74,7 +74,7 @@ POST /api/clientes
 Asociar un servicio:
 
 ```json
-POST /api/clientes/123456789/servicios
+POST /api/v1/clientes/123456789/servicios
 {
   "servicio": "Internet",
   "fechaInicio": "2025-01-10",
@@ -95,6 +95,7 @@ Variables de entorno:
 | Variable | Descripción | Valor por defecto |
 |---|---|---|
 | `DATABASE_URL` | URL de conexión a PostgreSQL | `postgresql://postgres:postgres@db:5432/celsia_db` |
+| `CORS_ORIGINS` | Orígenes permitidos por CORS, separados por coma (ej: `https://app.example.com,http://localhost:3000`) | `*` (todos) |
 
 ### Desarrollo local
 
