@@ -34,8 +34,6 @@ export function ClienteForm({
       identificacion: '',
       nombres: '',
       apellidos: '',
-      // Centinela "sin seleccionar": muestra el placeholder del Select y
-      // Zod lo rechaza al enviar. Sin esto el navegador preselecciona CC.
       tipoIdentificacion: '' as TipoIdentificacion,
       fechaNacimiento: '',
       numeroCelular: '',
@@ -60,6 +58,14 @@ export function ClienteForm({
           {errorServidor}
         </Alert>
       )}
+
+      <Select
+        label="Tipo de identificación"
+        error={errors.tipoIdentificacion?.message}
+        opciones={TIPOS_IDENTIFICACION}
+        placeholder="Selecciona..."
+        {...register('tipoIdentificacion')}
+      />      
       <Input
         label="Identificación"
         error={errors.identificacion?.message}
@@ -79,13 +85,6 @@ export function ClienteForm({
         error={errors.apellidos?.message}
         autoComplete="family-name"
         {...register('apellidos')}
-      />
-      <Select
-        label="Tipo de identificación"
-        error={errors.tipoIdentificacion?.message}
-        opciones={TIPOS_IDENTIFICACION}
-        placeholder="Selecciona..."
-        {...register('tipoIdentificacion')}
       />
       <Input
         label="Fecha de nacimiento"
