@@ -5,15 +5,16 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-COPY celsia-web/package.json celsia-web/pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-COPY celsia-web/ .
+COPY . .
 RUN pnpm build
 
 # ---- Etapa de producción ----
 FROM nginx:alpine AS production
 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
