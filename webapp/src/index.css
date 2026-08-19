@@ -164,6 +164,7 @@ h3 {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--esp-2);
+  margin-top: var(--esp-4);
 }
 
 .rejilla-detalle {
