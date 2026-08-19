@@ -6,10 +6,6 @@ services:
     container_name: celsia-web
     ports:
       - "8080:80"
-    extra_hosts:
-      # Permite que nginx alcance la API publicada en el host (Linux;
-      # en Docker Desktop para Windows/Mac ya existe por defecto).
-      - "host.docker.internal:host-gateway"
     restart: unless-stopped
     logging:
       driver: json-file

@@ -27,10 +27,9 @@ cp .env.example .env
 `VITE_API_URL` define el origen de la API REST (por defecto
 `http://127.0.0.1:8000`).
 
-> La API no expone cabeceras CORS. Por eso el navegador nunca llama a la API
-> directamente: las peticiones van a rutas relativas `/api/...` del mismo
-> origen y un proxy las reenvía al backend (Vite en desarrollo, nginx en
-> producción).
+> El backend expone cabeceras CORS (`CORS_ORIGINS`, `"*"` por defecto), por lo
+> que el navegador llama a la API directamente desde su propio origen. Debe
+> ser alcanzable desde el navegador y estar permitido por el CORS del backend.
 
 ## Desarrollo
 
@@ -49,9 +48,10 @@ docker compose up --build
 ```
 
 La aplicación queda disponible en `http://localhost:8080`. nginx sirve el
-build estático y actúa como proxy inverso de `/api` hacia la API publicada en
-el host (`host.docker.internal:8000`), por lo que la API debe estar corriendo
-en la máquina anfitriona.
+build estático; el navegador llama a la API directamente según `VITE_API_URL`
+(configurado en el build), que debe ser alcanzable desde el navegador — por
+ejemplo `http://127.0.0.1:8000` con la API corriendo en el host — y estar
+permitido por `CORS_ORIGINS` del backend.
 
 ## Arquitectura
 

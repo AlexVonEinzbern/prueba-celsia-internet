@@ -3,19 +3,20 @@ import { parseApiError, toApiError } from './errors'
 /**
  * Cliente HTTP centralizado.
  *
- * Las peticiones usan rutas relativas (`/api/...`) para que el navegador
- * hable siempre con su mismo origen: la API no expone cabeceras CORS.
- * - En desarrollo, `server.proxy` de Vite reenvía `/api` a `VITE_API_URL`.
- * - En Docker, nginx actúa como proxy inverso hacia la API.
+ * Las peticiones van directo al origen de la API: el backend ya expone las
+ * cabeceras CORS (ver `CORS_ORIGINS` en api/app/main.py), así que el navegador
+ * puede hablar con otro origen sin necesidad de proxy.
  *
- * El origen real de la API se configura en `VITE_API_URL` (ver .env.example).
+ * El origen se configura en `VITE_API_URL` (ver .env.example). Debe ser
+ * alcanzable desde el navegador y estar permitido por el CORS del backend.
  */
-const API_PREFIX = '/api'
+const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+const API_PREFIX = '/api/v1'
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   let response: Response
   try {
-    response = await fetch(`${API_PREFIX}${path}`, {
+    response = await fetch(`${API_BASE}${API_PREFIX}${path}`, {
       headers: { 'Content-Type': 'application/json' },
       ...options,
     })
