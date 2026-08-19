@@ -1,0 +1,14 @@
+services:
+  celsia-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celsia-web
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
