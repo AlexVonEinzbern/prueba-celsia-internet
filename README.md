@@ -108,19 +108,19 @@ Para el desarrollo de la prueba teórica, tendrás que escribir tus respuestas e
 
   2.2. ¿Qué mecanismos de seguridad incluirías en la aplicación para garantizar la protección del acceso a los datos?
 
-- RTA:
+- RTA: Implementaría autenticación y autorización mediante OAuth 2.0/OIDC con tokens de corta duración y RBAC, garantizando que cada usuario solo pueda acceder a los recursos que le corresponden. La API se expondría exclusivamente mediante HTTPS, detrás de nginx, con CORS restringido, rate limiting y cabeceras de seguridad, manteniendo Swagger restringido en producción. En PostgreSQL aplicaría mínimo privilegio, acceso únicamente desde la red interna y cifrado de datos y copias de seguridad cuando corresponda. Finalmente, incorporaría validación estricta de entradas, protección contra XSS/CSRF, auditoría de accesos y modificaciones, gestión segura de secretos y políticas de minimización y conservación de datos personales.
 
   2.3. ¿Qué estrategia de escalabilidad recomendarías para la aplicación considerando que el crecimiento proyectado será de 1,000,000 de clientes por año?
 
-- RTA:
+- RTA: Recomendaría una estrategia de escalabilidad progresiva, partiendo de una arquitectura monolítica y stateless con FastAPI y PostgreSQL, ya que 1.000.000 de clientes al año no requiere inicialmente una arquitectura distribuida. Primero optimizaría la base de datos mediante índices, paginación, pool de conexiones y migraciones controladas, y posteriormente escalaría horizontalmente la API mediante múltiples instancias detrás de un balanceador de carga. Para absorber el crecimiento de las consultas se podrían incorporar réplicas de lectura y, cuando sea necesario, una caché como Redis; el frontend React podría distribuirse mediante un CDN. Para picos de alta demanda, procesos no críticos podrían desacoplarse mediante colas y procesamiento asíncrono. Finalmente, utilizaría monitoreo y pruebas de carga para determinar cuándo incorporar particionamiento o archivado de datos, evitando introducir microservicios o sharding hasta que las métricas demuestren que son necesarios.
 
   2.4. ¿Qué patrón o patrones de diseño recomendarías para esta solución y cómo se implementarían? (Justifique)
 
-- RTA:
+- RTA: Recomendaría aplicar principalmente los patrones **Repository, Service Layer y Dependency Injection** en el backend, y **Facade/Service y Custom Hooks** en el frontend. En FastAPI, los repositorios encapsularían el acceso a PostgreSQL mediante SQLAlchemy, mientras que una capa de servicios concentraría las reglas de negocio y los casos de uso, dejando los routers únicamente como adaptadores HTTP. FastAPI permite implementar Dependency Injection mediante `Depends`, facilitando además las pruebas y la incorporación de autenticación y autorización. En React, mantendría una fachada o cliente HTTP centralizado para gestionar las comunicaciones con la API, mientras que los servicios por funcionalidad y los Custom Hooks encapsularían la lógica de acceso y estado, dejando los componentes enfocados en la presentación. Esta combinación permite separar responsabilidades, facilita las pruebas y el mantenimiento, y permite escalar la aplicación sin introducir complejidad innecesaria como microservicios, CQRS o Event Sourcing mientras el volumen y los requerimientos no lo justifiquen.
 
   2.5. ¿Qué recomendaciones harías para optimizar el manejo y la persistencia de datos de la aplicación, teniendo en cuenta que esta aplicación tiene una alta transaccionalidad?
 
-- RTA:
+- RTA: Para una aplicación con alta transaccionalidad recomendaría optimizar primero la gestión de las transacciones y la concurrencia. En PostgreSQL, la integridad de los datos debe estar respaldada por claves, restricciones y relaciones adecuadamente indexadas, evitando consultas previas innecesarias antes de insertar y manteniendo las transacciones cortas y atómicas. En SQLAlchemy, utilizaría un pool de conexiones correctamente dimensionado y, ante un crecimiento importante de concurrencia, evaluaría SQLAlchemy asíncrono con `asyncpg` y PgBouncer. Para las consultas, implementaría paginación e índices adecuados y utilizaría réplicas de lectura o caché cuando el volumen lo requiera. Finalmente, incorporaría monitoreo de consultas y bloqueos, configuración de `autovacuum`, migraciones mediante Alembic y una estrategia de backups con recuperación a un punto en el tiempo (PITR). De esta manera se mantiene la consistencia de las operaciones y se permite aumentar la capacidad de la aplicación sin comprometer el rendimiento ni la integridad de los datos.
 
 # 3. Redes
 
