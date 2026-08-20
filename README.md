@@ -126,22 +126,29 @@ Para el desarrollo de la prueba teórica, tendrás que escribir tus respuestas e
 
 3.1. Explica la diferencia entre un router y un switch. ¿Cuándo usarías cada uno?
 
-- RTA:
+- RTA: El router conecta redes diferentes y dirige el tráfico entre ellas. El switch conecta dispositivos dentro de una misma red. Usaría un router para conectar mi red local a Internet y un switch para conectar PCs dentro de la LAN.
 
-  3.2. Describe las siete capas del modelo OSI y menciona brevemente la función principal de cada una
-
-- RTA:
-
-  3.3. Explica las diferencias entre los protocolos TCP y UDP. Dar un ejemplo de cuándo usarías cada uno?
+3.2. Describe las siete capas del modelo OSI y menciona brevemente la función principal de cada una
 
 - RTA:
+    1. **Física**: se encarga de transmitir los bits físicamente por el medio, como cables, fibra óptica o señales inalámbricas
+    2. **Enlace**: controla la comunicación entre dispositivos conectados directamente y utiliza direcciones MAC. Ethernet por ejemplo
+    3. **Red**: se encarga de direccionar y enrutar los paquetes entre diferentes redes. Por ejemplo IP
+    4. **Transporte**: garantiza la comunicación entre aplicaciones de origen y destino. Aquí encontramos TCP y UDP
+    5. **Sesión**: establece, mantiene y termina las sesiones de comunicación entre aplicaciones
+    6. **Presentación**: se encarga de cómo se representan los datos, incluyendo formatos, codificación, compresión y cifrado
+    7. **Aplicación**: es la capa más cercana al usuario y proporciona servicios de red a las aplicaciones, como HTTP, DNS, FTP o SMTP
 
-  3.4. ¿Qué es una máscara de subred y cómo se utiliza para dividir una red en subredes más pequeñas?
+3.3. Explica las diferencias entre los protocolos TCP y UDP. Dar un ejemplo de cuándo usarías cada uno?
 
-- RTA:
+- RTA: TCP es orientado a conexión y garantiza la entrega de los datos. UDP es más rápido, pero no garantiza que lleguen. Usaría TCP para una página web o una descarga, y UDP para videollamadas o streaming.
 
-  3.5. ¿Puedes mencionar algunos protocolos de enrutamiento dinámico y explicar brevemente cómo funcionan?
+3.4. ¿Qué es una máscara de subred y cómo se utiliza para dividir una red en subredes más pequeñas?
 
-- RTA:
+- RTA: indica qué parte de una dirección IP corresponde a la red y cuál a los dispositivos. Permite dividir una red grande en redes más pequeñas para organizar y controlar mejor el tráfico.
+
+3.5. ¿Puedes mencionar algunos protocolos de enrutamiento dinámico y explicar brevemente cómo funcionan?
+
+- RTA: algunos ejemplos son OSPF, RIP y BGP. Permiten que los routers aprendan automáticamente las rutas disponibles y las actualicen cuando cambia la red.
 
 ### Por último, y no menos importante, te deseamos mucha suerte y esperamos que disfrutes haciendo la prueba. El objetivo es evaluar tu conocimiento, capacidad de adaptabilidad y habilidad para resolver problemas.
